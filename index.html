@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Library</title>
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         Header
+    ========================== -->
+
+    <header class="header">
+
+        <div class="logo">
+            📚 <span>My Library</span>
+        </div>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#library">My Library</a>
+            <a href="#notes">Notes</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+        <button class="theme-btn" id="themeBtn">
+            🌙
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+        Main
+    ========================== -->
+
+    <main>
+
+        <section class="home" id="home">
+
+            <!-- Welcome -->
+
+            <div class="welcome">
+
+                <p class="greeting">
+                    Good evening 👋
+                </p>
+
+                <h1>
+                    Ready to continue reading?
+                </h1>
+
+                <p>
+                    Pick up where you left off and keep going.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                Continue Reading
+            ========================== -->
+
+            <section class="continue-reading">
+
+                <div class="section-title">
+                    <h2>Continue Reading</h2>
+                </div>
+
+                <div class="reading-card">
+
+                    <div class="book-cover">
+
+                        <img
+                            id="currentBookCover"
+                            src="images/book-placeholder.png"
+                            alt="Book cover"
+                        >
+
+                    </div>
+
+
+                    <div class="book-info">
+
+                        <p class="book-label">
+                            Currently Reading
+                        </p>
+
+                        <h3 id="currentBookTitle">
+                            Your Book Title
+                        </h3>
+
+                        <p
+                            class="chapter"
+                            id="currentChapter"
+                        >
+                            Chapter 1
+                        </p>
+
+                        <div class="progress-container">
+
+                            <div
+                                class="progress-bar"
+                                id="progressBar"
+                            ></div>
+
+                        </div>
+
+                        <p
+                            class="progress-text"
+                            id="progressText"
+                        >
+                            0% completed
+                        </p>
+
+                        <button
+                            class="continue-btn"
+                            id="continueBtn"
+                        >
+                            Continue Reading
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 Library
+            ========================== -->
+
+            <section
+                class="library"
+                id="library"
+            >
+
+                <div class="section-title">
+
+                    <h2>
+                        My Library
+                    </h2>
+
+                    <button
+                        class="add-book-btn"
+                        id="addBookBtn"
+                    >
+                        + Add Book
+                    </button>
+
+                </div>
+
+            <div class="library-tools">
+
+                <div class="search-box">
+                    🔍
+                    <input
+                        type="text"
+                        id="bookSearch"
+                        placeholder="Search for a book..."
+                    >
+            </div>
+
+</div>
+                <!-- Filters -->
+
+                <div class="library-filters">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="reading"
+                    >
+                        Reading
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="want"
+                    >
+                        Want to Read
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="finished"
+                    >
+                        Finished
+                    </button>
+
+                </div>
+
+
+                <!-- Books -->
+
+                <div
+                    class="books-grid"
+                    id="booksGrid"
+                >
+                    <!-- Books added by JavaScript -->
+                </div>
+
+
+                <!-- Empty Library -->
+
+                <div
+                    class="empty-library"
+                    id="emptyLibrary"
+                >
+
+                    <div class="empty-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Your library is empty
+                    </h3>
+
+                    <p>
+                        Add your first book and start building
+                        your personal library.
+                    </p>
+
+                    <button
+                        class="add-first-book-btn"
+                        id="addFirstBookBtn"
+                    >
+                        + Add Your First Book
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 Notes
+            ========================== -->
+
+            <section
+                class="notes-section"
+                id="notes"
+            >
+
+                <div class="section-title">
+
+                    <h2>
+                        My Notes
+                    </h2>
+
+                </div>
+
+                <div
+                    class="notes-container"
+                    id="notesContainer"
+                >
+
+                    <p class="no-notes">
+                        Your notes will appear here while you read.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         Add Book Modal
+    ========================== -->
+
+    <div
+        class="modal"
+        id="addBookModal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close-modal"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+            <h2>
+                Add a New Book
+            </h2>
+
+            <form id="bookForm">
+
+                <label for="bookTitle">
+                    Book Title
+                </label>
+
+                <input
+                    type="text"
+                    id="bookTitle"
+                    placeholder="Enter book title"
+                    required
+                >
+
+
+                <label for="bookAuthor">
+                    Author
+                </label>
+
+                <input
+                    type="text"
+                    id="bookAuthor"
+                    placeholder="Enter author name"
+                    required
+                >
+
+
+                <label for="bookFile">
+                    Book File
+                </label>
+
+                <input
+                    type="file"
+                    id="bookFile"
+                    accept=".pdf,application/pdf"
+                    required
+                >
+
+
+                <label for="bookCover">
+                    Cover
+                </label>
+
+                <input
+                    type="file"
+                    id="bookCover"
+                    accept="image/*"
+                >
+
+
+                <button
+                    type="submit"
+                    class="save-book-btn"
+                >
+                    Add Book
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Book Reader
+    ========================== -->
+
+    <section
+        class="reader"
+        id="reader"
+    >
+
+        <!-- Reader Header -->
+
+        <div class="reader-header">
+
+            <button
+                class="back-btn"
+                id="backToLibrary"
+            >
+                ← Back to Library
+            </button>
+
+
+            <div class="reader-title">
+
+                <h2 id="readerBookTitle">
+                    Book Title
+                </h2>
+
+                <p id="readerBookAuthor">
+                    Author
+                </p>
+
+            </div>
+
+
+            <button
+                class="notes-btn"
+                id="readerNotesBtn"
+            >
+                📝 Notes
+            </button>
+
+        </div>
+
+
+        <!-- PDF Reader -->
+
+        <div class="reader-content">
+
+            <div id="pdfContainer">
+                <!-- PDF pages will be rendered here -->
+            </div>
+
+        </div>
+
+
+        <!-- Reader Footer -->
+
+        <div class="reader-footer">
+
+            <div class="reader-progress">
+
+                <button
+                    id="decreaseProgress"
+                    type="button"
+                >
+                    −
+                </button>
+
+
+                <input
+                    type="range"
+                    id="progressSlider"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+
+                <button
+                    id="increaseProgress"
+                    type="button"
+                >
+                    +
+                </button>
+
+
+                <span id="readerProgressText">
+                    0%
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+            📚 My Library — Read. Learn. Grow.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+        JavaScript
+    ========================== -->
+
+    <script
+        type="module"
+        src="js/app.js"
+    ></script>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "My Library",
+  "short_name": "My Library",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#6c63ff",
+  "orientation": "portrait"
+}
